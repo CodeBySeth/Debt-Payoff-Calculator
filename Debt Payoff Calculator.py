@@ -16,9 +16,14 @@ class debt:
 def calculateInterest(interest, loanAmount):
     loanType = input("Is the loan a credit card? (y or n): ")
     if loanType == "y":
-        return (interest / 365) * 30
+        accruing = (interest / 365) * 10000
+        accruing = float("{:.2f}".format(accruing))
+        accruing = accruing * 30
+        accruing = float("{:.2f}".format(accruing))
+        return accruing
     else:
         loanLength = int(input("How long is the length of the loan: "))
+        print(interest * loanAmount * loanLength)
         return interest * loanAmount * loanLength
         
         
@@ -32,9 +37,11 @@ while True:
     value    = float(input("Enter debt value: "))
     if value == 0.0:
         break
-    interest = float(input("Enter interest value: ")) / 100
+    interest = float(input("Enter interest value: "))
+    interest = float(interest / 100)
     payment  = float(input("Enter payment value: "))
 
+    print(interest)
     obj = debt(value, interest, payment)
 
     obj.monthlyAccInt = calculateInterest(interest, value)
